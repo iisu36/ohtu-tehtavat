@@ -1,6 +1,5 @@
 from ostoskori import Ostoskori
 
-
 class Kauppa:
     def __init__(self, varasto, pankki, viitegeneraattori):
         self._varasto = varasto
