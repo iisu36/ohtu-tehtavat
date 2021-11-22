@@ -1,5 +1,6 @@
 *** Settings ***
 Resource  resource.robot
+Resource  login_resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup  Reset Application And Go To Register Page
@@ -32,6 +33,18 @@ Register With Nonmatching Password And Password Confirmation
     Set Password Confirmation  mauno678
     Submit Credentials
     Register Should Fail With Message  Passwords do not match
+
+Login After Successful Registration
+    Register Successfully
+    Go To Login Page
+    Login Successfully
+    Login Should Succeed
+
+Login After Failed Registration
+    Register Failing
+    Go To Login Page
+    Login Failing
+    Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
 Reset Application And Go To Register Page
