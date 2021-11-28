@@ -16,16 +16,13 @@ class IntJoukko:
         return True
 
     def kuuluu(self, n):
-        on = 0
 
         for i in range(0, self.alkioiden_lkm):
             if n == self.lukujono[i]:
-                on = on + 1
+                return True
+        
+        return False
 
-        if on > 0:
-            return True
-        else:
-            return False
 
     def lisaa(self, n):
         ei_ole = 0
