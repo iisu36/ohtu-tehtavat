@@ -109,15 +109,10 @@ class IntJoukko:
         return z
 
     def __str__(self):
-        if self.alkioiden_lkm == 0:
-            return "{}"
-        elif self.alkioiden_lkm == 1:
-            return "{" + str(self.lukujono[0]) + "}"
-        else:
-            tuotos = "{"
+        tuotos = ""
+        if self.alkioiden_lkm > 0:
             for i in range(0, self.alkioiden_lkm - 1):
-                tuotos = tuotos + str(self.lukujono[i])
-                tuotos = tuotos + ", "
+                tuotos = tuotos + str(self.lukujono[i]) + ", "
             tuotos = tuotos + str(self.lukujono[self.alkioiden_lkm - 1])
-            tuotos = tuotos + "}"
-            return tuotos
+        
+        return "{" + tuotos + "}"
