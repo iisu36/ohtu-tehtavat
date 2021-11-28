@@ -12,7 +12,7 @@ class IntJoukko:
 
     def validoi_int(self, validoitava):
         if not isinstance(validoitava, int) or validoitava < 0:
-            raise Exception("Pitää olla nollaa suurempi numero")
+            raise Exception("Pitää olla nollaa suurempi luku")
         return True
 
     def kuuluu(self, luku):
@@ -24,10 +24,10 @@ class IntJoukko:
         return False
 
 
-    def lisaa(self, luku):
+    def lisaa(self, lisattava):
 
-        if not self.kuuluu(luku) or self.alkioiden_lkm == 0:
-            self.lukujono[self.alkioiden_lkm] = luku
+        if not self.kuuluu(lisattava) or self.alkioiden_lkm == 0:
+            self.lukujono[self.alkioiden_lkm] = lisattava
             self.alkioiden_lkm = self.alkioiden_lkm + 1
 
             if self.alkioiden_lkm % len(self.lukujono) == 0:
@@ -37,26 +37,20 @@ class IntJoukko:
                 self.kopioi_taulukko(vanha_taulukko, self.lukujono)
 
 
-    def poista(self, n):
-        kohta = -1
-        apu = 0
+    def poista(self, poistettava):
+        poistettavan_indeksi = -1
 
         for i in range(0, self.alkioiden_lkm):
-            if n == self.lukujono[i]:
-                kohta = i  # siis luku löytyy tuosta kohdasta :D
-                self.lukujono[kohta] = 0
+            if poistettava == self.lukujono[i]:
+                poistettavan_indeksi = i
+                self.lukujono[poistettavan_indeksi] = 0
                 break
 
-        if kohta != -1:
-            for j in range(kohta, self.alkioiden_lkm - 1):
-                apu = self.lukujono[j]
-                self.lukujono[j] = self.lukujono[j + 1]
-                self.lukujono[j + 1] = apu
+        if poistettavan_indeksi != -1:
+            for j in range(poistettavan_indeksi, self.alkioiden_lkm - 1):
+                self.lukujono[j], self.lukujono[j + 1] = self.lukujono[j + 1], self.lukujono[j]
 
             self.alkioiden_lkm = self.alkioiden_lkm - 1
-            return True
-
-        return False
 
     def kopioi_taulukko(self, kopioitava, kopio):
         for i in range(0, len(kopioitava)):
