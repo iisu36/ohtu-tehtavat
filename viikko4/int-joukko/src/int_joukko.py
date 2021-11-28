@@ -15,38 +15,27 @@ class IntJoukko:
             raise Exception("Pitää olla nollaa suurempi numero")
         return True
 
-    def kuuluu(self, n):
+    def kuuluu(self, luku):
 
         for i in range(0, self.alkioiden_lkm):
-            if n == self.lukujono[i]:
+            if luku == self.lukujono[i]:
                 return True
         
         return False
 
 
-    def lisaa(self, n):
-        ei_ole = 0
+    def lisaa(self, luku):
 
-        if self.alkioiden_lkm == 0:
-            self.lukujono[0] = n
-            self.alkioiden_lkm = self.alkioiden_lkm + 1
-            return True
-        else:
-            pass
-
-        if not self.kuuluu(n):
-            self.lukujono[self.alkioiden_lkm] = n
+        if not self.kuuluu(luku) or self.alkioiden_lkm == 0:
+            self.lukujono[self.alkioiden_lkm] = luku
             self.alkioiden_lkm = self.alkioiden_lkm + 1
 
             if self.alkioiden_lkm % len(self.lukujono) == 0:
-                taulukko_old = self.lukujono
-                self.kopioi_taulukko(self.lukujono, taulukko_old)
+                vanha_taulukko = self.lukujono
+                self.kopioi_taulukko(self.lukujono, vanha_taulukko)
                 self.lukujono = [0] * (self.alkioiden_lkm + self.kasvatuskoko)
-                self.kopioi_taulukko(taulukko_old, self.lukujono)
+                self.kopioi_taulukko(vanha_taulukko, self.lukujono)
 
-            return True
-
-        return False
 
     def poista(self, n):
         kohta = -1
@@ -69,9 +58,9 @@ class IntJoukko:
 
         return False
 
-    def kopioi_taulukko(self, a, b):
-        for i in range(0, len(a)):
-            b[i] = a[i]
+    def kopioi_taulukko(self, kopioitava, kopio):
+        for i in range(0, len(kopioitava)):
+            kopio[i] = kopioitava[i]
 
     def mahtavuus(self):
         return self.alkioiden_lkm
