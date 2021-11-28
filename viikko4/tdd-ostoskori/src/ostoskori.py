@@ -41,7 +41,7 @@ class Ostoskori:
         if poistettava_tuote.lukumaara() == 0: self.kori.pop(poistettava.nimi())
 
     def tyhjenna(self):
-        pass
+        self.kori.clear()
         # tyhjentää ostoskorin
 
     def ostokset(self):
