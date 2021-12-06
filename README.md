@@ -7,3 +7,5 @@
 [viikko 3](https://github.com/iisu36/ohtu-tehtavat/tree/main/viikko3)
 
 [viikko 4](https://github.com/iisu36/ohtu-tehtavat/tree/main/viikko4)
+
+[viikko 5](https://github.com/iisu36/ohtu-tehtavat/tree/main/viikko5)
