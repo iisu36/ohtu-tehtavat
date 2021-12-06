@@ -13,47 +13,19 @@ class TennisGame:
 
     def get_score(self):
         score_text = ""
-        temp_score = 0
 
         if self.player1_points >= 4 or self.player2_points >= 4: 
-            score_text =  self.score_for_four_and_higher()
-
-        elif self.player1_points == self.player2_points:
-            if self.player1_points == 0:
-                score_text = "Love-All"
-            elif self.player1_points == 1:
-                score_text = "Fifteen-All"
-            elif self.player1_points == 2:
-                score_text = "Thirty-All"
-            elif self.player1_points == 3:
-                score_text = "Forty-All"
-            else:
-                score_text = "Deuce"
-
+            score_text =  self.score_for_four_points_and_higher()
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.player1_points
-                else:
-                    score_text = score_text + "-"
-                    temp_score = self.player2_points
-
-                if temp_score == 0:
-                    score_text = score_text + "Love"
-                elif temp_score == 1:
-                    score_text = score_text + "Fifteen"
-                elif temp_score == 2:
-                    score_text = score_text + "Thirty"
-                elif temp_score == 3:
-                    score_text = score_text + "Forty"
+            score_text = self.score_up_to_forty()
 
         return score_text
 
-    def score_for_four_and_higher(self):
+    def score_for_four_points_and_higher(self):
         difference_in_points = self.player1_points - self.player2_points
 
         if difference_in_points < -2: difference_in_points = -2
-        if difference_in_points > 2: difference_in_points = 2
+        elif difference_in_points > 2: difference_in_points = 2
 
         score_text_options = [f'Win for {self.player2_name}', 
                                 f'Advantage {self.player2_name}', 
@@ -62,3 +34,15 @@ class TennisGame:
                                 f'Win for {self.player1_name}']
 
         return score_text_options[difference_in_points + 2]
+
+    def score_up_to_forty(self):
+        score_text_options = ['Love', 'Fifteen', 'Thirty', 'Forty']
+
+        score_text = score_text_options[self.player1_points] + '-'
+
+        if self.player1_points == self.player2_points:
+            score_text += 'All'
+        else:
+            score_text += score_text_options[self.player2_points]
+
+        return score_text
